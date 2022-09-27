@@ -45,10 +45,6 @@ const restrictedScenes = ["restrictedScene","anotherScene","yetAnotherScene"];
 const restrictedScenes = [""];
 ```
 
-```Javascript
-const blockedScenes = [""];
-```
-
 ## How to use
 
 This is designed to be as easy to use and user-friendly as possible.
