@@ -4,7 +4,7 @@ A simple script to block the execution of commands if you are on certain OBS sce
 
 ## How to use
 
-Simply copy the contents of `block-commands.js` into the "custom JS" section of the command in Lumia Stream you want to limit OBS scene changes on.
+Simply copy the contents of `block-commands.js` into the "custom JS" section of the command in Lumia Stream you want to limit OBS scene changes on then edit the follow the setup procedure below.
 
 ### Scene setup
 
@@ -48,3 +48,22 @@ const restrictedScenes = ["restrictedScene","anotherScene","yetAnotherScene"];
 //none
 const restrictedScenes = [""];
 ```
+
+#### Switching
+
+This is a list of scenes you would normally want to switch to; if the current OBS scene is neither restricted nor blocked.
+
+These are specified the same way as blocked scenes above, but using the `sceneSwitching` variable instead.
+
+```Javascript
+//Single
+const sceneSwitching = ["newScene"];
+
+//multiple
+const sceneSwitching = ["newScene","anotherScene","yetAnotherScene"];
+
+//no scene switching
+const sceneSwitching = [""];
+```
+
+To use the new variables in the OBS actions you would simply use the `ns-` followed by the scene name as a Lumia variable e.g. `{{ns-newScene}}`
