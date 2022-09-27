@@ -2,7 +2,7 @@ async function() {
 
     const blockedScenes = ["a blocked Scene"];
     const restrictedScenes = ["a restricted Scene"];
-    const newSceneName = ["Coding"];
+    const sceneSwitching = ["Coding"];
 
 
     // ----- DO NOT EDIT BELOW HERE -----
@@ -14,10 +14,10 @@ async function() {
         done({ shouldStop: true });
     } else if (restrictedScenes.includes("{{obs_current_scene}}")) {
         // If the current scene is in the restrictedScenes list, stop any scene changes
-        newSceneName.map(sceneName => sceneList["ns-" + sceneName] = "{{obs_current_scene}}")
+        sceneSwitching.map(sceneName => sceneList["ns-" + sceneName] = "{{obs_current_scene}}")
     } else {
         // Otherwise, proceed as normal
-        newSceneName.map(sceneName => sceneList["ns-" + sceneName] = sceneName)
+        sceneSwitching.map(sceneName => sceneList["ns-" + sceneName] = sceneName)
     }
 
     done({ variables: sceneList })
