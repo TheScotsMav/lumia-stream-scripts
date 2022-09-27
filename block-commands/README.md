@@ -2,7 +2,9 @@
 
 A simple script to block the execution of commands if you are on certain OBS scenes.
 
-## Blocked scenes
+## Scenes
+
+### Blocked
 
 If you don't want the command to be able to run at all, add them to the array as shown below.
 
@@ -10,7 +12,7 @@ If you don't want the command to be able to run at all, add them to the array as
 const blockedScenes = ["blockedScene"];
 ```
 
-### Multiple blocked scenes
+#### Multiple blocked scenes
 
 If you want multiple blocked scenes, simply list them in the array as shown.
 
@@ -18,9 +20,30 @@ If you want multiple blocked scenes, simply list them in the array as shown.
 const blockedScenes = ["blockedScene","anotherScene","yetAnotherScene"];
 ```
 
-### No blocked scenes
+#### No blocked scenes
 
 If you don't want any blocked scenes simply set the array to contain an empty string
+
+```Javascript
+const blockedScenes = [""];
+```
+
+## Restricted
+
+This is a list of scenes you want the command to fire as normal on, except not allow any OBS scene changes.
+
+These are specified the same way as blocked scenes above, but using the `restrictedScenes` variable instead.
+
+```Javascript
+//Single
+const restrictedScenes = ["restrictedScene"];
+
+//multiple
+const restrictedScenes = ["restrictedScene","anotherScene","yetAnotherScene"];
+
+//none
+const restrictedScenes = [""];
+```
 
 ```Javascript
 const blockedScenes = [""];
