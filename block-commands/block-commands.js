@@ -14,10 +14,10 @@ async function() {
         done({ shouldStop: true });
     } else if (restrictedScenes.includes("{{obs_current_scene}}")) {
         // If the current scene is in the restrictedScenes list, stop any scene changes
-        sceneSwitching.map(sceneName => sceneList["ns-" + sceneName] = "{{obs_current_scene}}")
+        sceneSwitching.map(scene => sceneList["sw-" + scene] = "{{obs_current_scene}}")
     } else {
         // Otherwise, proceed as normal
-        sceneSwitching.map(sceneName => sceneList["ns-" + sceneName] = sceneName)
+        sceneSwitching.map(scene => sceneList["sw-" + scene] = scene)
     }
 
     done({ variables: sceneList })
