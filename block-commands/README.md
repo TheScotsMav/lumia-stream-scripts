@@ -28,7 +28,7 @@ If you don't want any blocked scenes simply set the array to contain an empty st
 const blockedScenes = [""];
 ```
 
-## Restricted
+### Restricted
 
 This is a list of scenes you want the command to fire as normal on, except not allow any OBS scene changes.
 
