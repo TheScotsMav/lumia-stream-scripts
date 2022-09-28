@@ -66,4 +66,6 @@ const sceneSwitching = ["newScene","anotherScene","yetAnotherScene"];
 const sceneSwitching = [""];
 ```
 
-To use the new variables in the OBS actions you would simply use the `ns-` followed by the scene name as a Lumia variable e.g. `{{ns-newScene}}`
+To use the new variables in the OBS actions you would simply use the `sw-` followed by the index of the scene name in the `sceneSwitching` list as a Lumia variable e.g. `{{sw-0}}` to switch to `newScene`, `{{sw-1}}` to switch to `anotherScene` and `{{sw-2}}` to switch to `yetAnotherScene`.
+
+Keep in mind that this list is 0 indexed. So if you only have a single scene switch, use `{{sw-0}}`.
