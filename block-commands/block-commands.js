@@ -4,7 +4,6 @@ async function() {
     const restrictedScenes = ["a restricted Scene"];
     const sceneSwitching = ["Coding"];
 
-
     // ----- DO NOT EDIT BELOW HERE -----
 
     let sceneList = {};
