@@ -5,9 +5,10 @@ async function() {
 
     // DON'T EDIT BELOW THIS LINE
 
-    let numLines = await getVariable("number_lines");
-    let commandNumber = await getVariable("command_number");
-    let lastCommandTime = await getVariable("last_command_time");
+    let numLines, commandNumber, lastCommandTime;
+
+    [numLines, commandNumber, lastCommandTime] = await Promise.allSettled([getVariable("number_lines"), getVariable("command_number"), getVariable("last_command_time")])
+
     const timeNow = Date.now();
 
     if (!numLines) {
