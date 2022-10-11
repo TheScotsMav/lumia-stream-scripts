@@ -1,6 +1,6 @@
 async function() {
-    const linesThreshold = 3; // Set the number of chat lines between each command
-    const timeBetweenCommands = 0; // Minumum number of minutes between commands
+    const linesThreshold = 20; // Set the number of chat lines between each command
+    const timeBetweenCommands = 5; // Minumum number of minutes between commands
     const commands = ["red", "blue", "green"]; // Put in the commands you want in a ticker here
 
     // DON'T EDIT BELOW THIS LINE
