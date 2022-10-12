@@ -34,8 +34,9 @@ async function() {
         await setVariable({ name: "number_lines", value: 0 });
         await setVariable({ name: "last_command_time", value: timeNow });
 
-        done();
-    }
+        return done();
+
+    } else {}
 
     await setVariable({ name: "number_lines", value: numLines });
 
