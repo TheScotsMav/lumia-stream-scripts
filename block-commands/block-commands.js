@@ -17,14 +17,14 @@ async function() {
             return done();
         }
         // If the current scene is in the restrictedScenes list, stop any scene changes
-        sceneSwitching.forEach((scene, x) => sceneList[`sw-${x}`] = "{{obs_current_scene}}");
+        sceneSwitching.forEach((scene, sceneNumber) => sceneList[`sw-${sceneNumber}`] = "{{obs_current_scene}}");
     } else {
         // check if there is a scene to switch to, if not, continue the command without passing a variable
         if (!sceneSwitching[0]) {
             return done();
         }
         // Otherwise, proceed as normal
-        sceneSwitching.forEach((scene, x) => sceneList[`sw-${x}`] = scene);
+        sceneSwitching.forEach((scene, sceneNumber) => sceneList[`sw-${sceneNumber}`] = scene);
     }
 
     done({ variables: sceneList })
