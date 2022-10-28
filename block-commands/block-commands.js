@@ -5,7 +5,7 @@ async function() {
 
     // ----- DO NOT EDIT BELOW HERE -----
 
-    if (Array.isArray(blockedScenes) && blockedScenes.includes(`{{obs_current_scene}}`)) {
+    if (Array.isArray(blockedScenes) && (blockedScenes.includes(`{{obs_current_scene}}`) || blockedScenes.includes(`{{slobs_current_scene}}`))) {
         // If the current scene is in the blockedScenes list, stop the command
         addLog(`Current scene is in blocked scenes list, stopping command.`)
         return done({ shouldStop: true });
@@ -15,9 +15,9 @@ async function() {
         return done({ shouldStop: true });
     }
 
-    if (Array.isArray(restrictedScenes) && restrictedScenes.includes(`{{obs_current_scene}}`)) {
+    if (Array.isArray(restrictedScenes) && (restrictedScenes.includes(`{{obs_current_scene}}`) || restrictedScenes.includes(`{{slobs_current_scene}}`))) {
         // If the current scene is in the restrictedScenes list, stop any OBS/SLOBS actions
-        addLog(`Current scene is in restricted scenes list, stopping OBS/SLOBS actions.`)
+        addLog(`Current scene is in restricted scenes list, stopping OBS actions.`)
         return done({ shouldStop: true, actionsToStop: ['obs', 'slobs'] });
     } else if (!Array.isArray(restrictedScenes)) {
         addLog(`ERROR: restrictedScenes needs to be an array of format ["noSceneChange"] for no restricted scenes set it to []`)
