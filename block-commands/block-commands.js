@@ -1,32 +1,31 @@
 async function() {
 
-    const blockedScenes = ["a blocked Scene"];
-    const restrictedScenes = ["a restricted Scene"];
-    const sceneSwitching = ["Coding"];
+    const blockedScenes = ["stopCommand", "anotherStopCommand"];
+    const restrictedScenes = ["noSceneChange"];
 
     // ----- DO NOT EDIT BELOW HERE -----
 
-    let sceneList = {};
-
-    if (blockedScenes.includes(`{{obs_current_scene}}`)) {
+    if (Array.isArray(blockedScenes) && blockedScenes.includes(`{{obs_current_scene}}`)) {
         // If the current scene is in the blockedScenes list, stop the command
+        addLog(`Current scene is in blocked scenes list, stopping command.`)
         return done({ shouldStop: true });
-    } else if (restrictedScenes.includes(`{{obs_current_scene}}`)) {
-        // check if there is a scene to switch to, if not, continue the command without passing a variable
-        if (!sceneSwitching[0]) {
-            return done();
-        }
-        // If the current scene is in the restrictedScenes list, stop any scene changes
-        sceneSwitching.forEach((scene, sceneNumber) => sceneList[`sw-${sceneNumber}`] = `{{obs_current_scene}}`);
-    } else {
-        // check if there is a scene to switch to, if not, continue the command without passing a variable
-        if (!sceneSwitching[0]) {
-            return done();
-        }
-        // Otherwise, proceed as normal
-        sceneSwitching.forEach((scene, sceneNumber) => sceneList[`sw-${sceneNumber}`] = scene);
+    } else if (!Array.isArray(blockedScenes)) {
+        addLog(`ERROR: blockedScenes needs to be an array of format ["stopCommand"] for no blocked scenes set it to []`)
+        showToast({ message: `ERROR: blockedScenes needs to be an array of format ["stopCommand"] for no blocked scenes set it to []` });
+        return done({ shouldStop: true });
     }
 
-    done({ variables: sceneList })
+    if (Array.isArray(restrictedScenes) && restrictedScenes.includes(`{{obs_current_scene}}`)) {
+        // If the current scene is in the restrictedScenes list, stop any scene changes
+        addLog(`Current scene is in restricted scenes list, stopping scene changes.`)
+        return done({ shouldStop: true, actionsToStop: ['obs', 'slobs'] });
+    } else if (!Array.isArray(restrictedScenes)) {
+        addLog(`ERROR: restrictedScenes needs to be an array of format ["noSceneChange"] for no restricted scenes set it to []`)
+        showToast({ message: `ERROR: restrictedScenes needs to be an array of format ["noSceneChange"] for no restricted scenes set it to []` });
+        return done({ shouldStop: true });
+    }
+
+    addLog(`Current scene is not restricted, command continuing as normal.`)
+    done()
 
 }
