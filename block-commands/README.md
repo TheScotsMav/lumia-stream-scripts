@@ -1,10 +1,10 @@
 # Block commands
 
-A simple script to block the execution of commands if you are on certain OBS scenes.
+A simple script to block the execution of commands if you are on certain OBS/Streamlabs Desktop scenes.
 
 ## How to use
 
-Simply copy the contents of `block-commands.js` into the "custom JS" section of the command in Lumia Stream you want to limit OBS scene changes on then follow the setup procedure below.
+Simply copy the contents of `block-commands.js` into the "custom JS" section of the command in Lumia Stream you want to limit OBS/Streamlabs Desktop actions on then follow the setup procedure below.
 
 ### Scene setup
 
@@ -34,7 +34,7 @@ const blockedScenes = [""];
 
 #### Restricted
 
-This is a list of scenes you want the command to fire as normal on, except not allow any OBS/SLOBS actions on.
+This is a list of scenes you want the command to fire as normal on, except not allow any OBS/Streamlabs Desktop actions on.
 
 These are specified the same way as blocked scenes above, but using the `restrictedScenes` variable instead.
 
