@@ -9,8 +9,8 @@ public class CPHInline
     private string commandName = "colorLeft";
     private string color = "green";
 
-    private static JObject buildChatCommand(string command, string color) {
-        
+    private static JObject buildChatCommand(string command, string color)
+    {
         var extraSettings = new JObject();
         extraSettings.Add("message", color);
         var jsonParams = new JObject();
@@ -21,7 +21,6 @@ public class CPHInline
         chatCommand.Add("params", jsonParams);
 
         return chatCommand;
-
     }
 
     private static string postRequest(string url, string command, string color)
