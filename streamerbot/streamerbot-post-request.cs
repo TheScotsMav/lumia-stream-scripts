@@ -1,14 +1,13 @@
 using System;
-using System.Net;
-using System.IO;
+using System.Net.Http;
+using System.Text;
 using Newtonsoft.Json.Linq;
 
 public class CPHInline
 {
-    private string lumiaToken = "";
+    private string lumiaToken = "lumia892089382";
     private string commandName = "colorLeft";
     private string color = "green";
-
     private static JObject buildChatCommand(string command, string color)
     {
         var extraSettings = new JObject();
@@ -19,53 +18,19 @@ public class CPHInline
         var chatCommand = new JObject();
         chatCommand.Add("type", "chat-command");
         chatCommand.Add("params", jsonParams);
-
         return chatCommand;
     }
 
     private static string postRequest(string url, string command, string color)
     {
-        var result = "";
         var requestJson = buildChatCommand(command, color);
-        HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-        httpWebRequest.ContentType = "application/json; charset=utf-8";
-        httpWebRequest.Method = "POST";
-        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+        using (var client = new HttpClient())
         {
-            streamWriter.Write(requestJson.ToString());
-            streamWriter.Flush();
-            streamWriter.Close();
+            var endpoint = new Uri(url);
+            var payload = new StringContent(requestJson.ToString(), Encoding.UTF8, "application/json");
+            var result = client.PostAsync(endpoint, payload).Result.Content.ReadAsStringAsync().Result;
+            return result;
         }
-
-        try
-        {
-            using (var response = httpWebRequest.GetResponse() as HttpWebResponse)
-            {
-                if (httpWebRequest.HaveResponse && response != null)
-                {
-                    using (var reader = new StreamReader(response.GetResponseStream()))
-                    {
-                        result = reader.ReadToEnd();
-                    }
-                }
-            }
-        }
-        catch (WebException e)
-        {
-            if (e.Response != null)
-            {
-                using (var errorResponse = (HttpWebResponse)e.Response)
-                {
-                    using (var reader = new StreamReader(errorResponse.GetResponseStream()))
-                    {
-                        string error = reader.ReadToEnd();
-                        result = error;
-                    }
-                }
-            }
-        }
-
-        return result;
     }
 
     public bool Execute()
