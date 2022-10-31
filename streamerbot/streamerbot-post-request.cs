@@ -21,12 +21,12 @@ public class CPHInline
         return chatCommand;
     }
 
-    private static string postRequest(string url, string command, string color)
+    private static string postRequest(string uri, string command, string color)
     {
         var requestJson = buildChatCommand(command, color);
         using (var client = new HttpClient())
         {
-            var endpoint = new Uri(url);
+            var endpoint = new Uri(uri);
             var payload = new StringContent(requestJson.ToString(), Encoding.UTF8, "application/json");
             var result = client.PostAsync(endpoint, payload).Result.Content.ReadAsStringAsync().Result;
             return result;
