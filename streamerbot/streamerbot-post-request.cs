@@ -25,7 +25,6 @@ public class CPHInline
         httpWebRequest.Method = "POST";
         using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
         {
-            string json = "{\\r\\n    \\\"type\\\": \\\"chat-command\\\",\\r\\n    \\\"params\\\": {\\r\\n            \\\"value\\\": \\\"colorLeft\\\",\\r\\n            \\\"extraSettings\\\": {\\r\\n                \\\"message\\\": \\\"pink\\\"\\r\\n            }\\r\\n    }\\r\\n}";
             streamWriter.Write(requestJson.ToString());
             streamWriter.Flush();
             streamWriter.Close();
