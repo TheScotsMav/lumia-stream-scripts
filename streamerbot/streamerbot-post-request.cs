@@ -7,19 +7,27 @@ public class CPHInline
 {
     private string lumiaToken = "";
     private string commandName = "colorLeft";
-    private string color = "pink";
+    private string color = "green";
 
-    private static string postRequest(string url, string command, string color)
-    {
-        var result = "";
+    private static JObject buildChatCommand(string command, string color) {
+        
         var extraSettings = new JObject();
         extraSettings.Add("message", color);
         var jsonParams = new JObject();
         jsonParams.Add("value", command);
         jsonParams.Add("extraSettings", extraSettings);
-        var requestJson = new JObject();
-        requestJson.Add("type", "chat-command");
-        requestJson.Add("params", jsonParams);
+        var chatCommand = new JObject();
+        chatCommand.Add("type", "chat-command");
+        chatCommand.Add("params", jsonParams);
+
+        return chatCommand;
+
+    }
+
+    private static string postRequest(string url, string command, string color)
+    {
+        var result = "";
+        var requestJson = buildChatCommand(command, color);
         HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
         httpWebRequest.ContentType = "application/json; charset=utf-8";
         httpWebRequest.Method = "POST";
