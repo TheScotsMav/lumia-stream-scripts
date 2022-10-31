@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 public class CPHInline
 {
-    private string lumiaToken = "lumia892089382";
+    private string lumiaToken = "";
     private string commandName = "colorLeft";
     private string color = "pink";
 
