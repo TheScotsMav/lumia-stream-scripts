@@ -5,12 +5,13 @@ using Newtonsoft.Json.Linq;
 
 public class CPHInline
 {
-    private string lumiaToken = "";
-    private string commandName = "colorLeft";
-    private string color = "green";
+    private static string lumiaToken = Environment.GetEnvironmentVariable("LumiaToken");
+    private static string left = "colorLeft";
+	private static string right = "colorRight";
     private static JObject buildChatCommand(string command, string color)
     {
-        var extraSettings = new JObject();
+        
+		var extraSettings = new JObject();
         extraSettings.Add("message", color);
         var jsonParams = new JObject();
         jsonParams.Add("value", command);
@@ -32,10 +33,17 @@ public class CPHInline
             return result;
         }
     }
+	
+	private static void sendCommand(string command, string color)
+	{
+		string url = string.Format("http://localhost:39231/api/send?token={0}", lumiaToken);
+		postRequest(url, command, color);
+	}
 
     public bool Execute()
     {
-        postRequest(string.Format("http://localhost:39231/api/send?token={0}", lumiaToken), commandName, color);
-        return true;
+        sendCommand(left, "green");
+		sendCommand(right, "yellow");
+		return true;
     }
 }
