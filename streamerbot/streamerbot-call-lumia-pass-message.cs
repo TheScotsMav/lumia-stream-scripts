@@ -26,7 +26,7 @@ public class CPHInline
 
     private static string postRequest(string uri, string command, string msg, string user)
     {
-        var requestJson = buildChatCommand(command, msg);
+        var requestJson = buildChatCommand(command, msg, user);
         using (var client = new HttpClient())
         {
             var endpoint = new Uri(uri);
