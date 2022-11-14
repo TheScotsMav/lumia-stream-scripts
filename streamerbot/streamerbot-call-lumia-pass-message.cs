@@ -40,7 +40,8 @@ public class CPHInline
     {
         var msg = args["rawInput"].ToString();
         var user = args["user"].ToString();
-        postRequest(string.Format("http://localhost:39231/api/send?token={0}", lumiaToken), commandName, msg, user);
+        var uri = string.Format("http://localhost:39231/api/send?token={0}", lumiaToken);
+        postRequest(uri, commandName, msg, user);
         return true;
     }
 }
