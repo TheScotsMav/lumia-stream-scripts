@@ -15,7 +15,7 @@ public class CPHInline
         var chatCommand = new JObject();
 
         extraSettings["message"] = msg;
-        extraSettings["user"] = user;
+        extraSettings["username"] = user;
         jsonParams["value"] = command;
         jsonParams["extraSettings"] = extraSettings;
         chatCommand["type"] = "chat-command";
