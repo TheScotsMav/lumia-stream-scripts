@@ -8,22 +8,25 @@ public class CPHInline
     private string lumiaToken = "";
     private string commandName = "colorLeft";
     private string color = "green";
-    private static JObject buildChatCommand(string command, string color)
+
+    private static JObject buildChatCommand(string command, string msg)
     {
         var extraSettings = new JObject();
-        extraSettings.Add("message", color);
         var jsonParams = new JObject();
-        jsonParams.Add("value", command);
-        jsonParams.Add("extraSettings", extraSettings);
         var chatCommand = new JObject();
-        chatCommand.Add("type", "chat-command");
-        chatCommand.Add("params", jsonParams);
+
+        extraSettings["message"] = msg;
+        jsonParams["value"] = command;
+        jsonParams["extraSettings"] = extraSettings;
+        chatCommand["type"] = "chat-command";
+        chatCommand["params"] = jsonParams;
+
         return chatCommand;
     }
 
-    private static string postRequest(string uri, string command, string color)
+    private static string postRequest(string uri, string command, string msg)
     {
-        var requestJson = buildChatCommand(command, color);
+        var requestJson = buildChatCommand(command, msg);
         using (var client = new HttpClient())
         {
             var endpoint = new Uri(uri);
@@ -35,7 +38,8 @@ public class CPHInline
 
     public bool Execute()
     {
-        postRequest(string.Format("http://localhost:39231/api/send?token={0}", lumiaToken), commandName, color);
+        var uri = string.Format("http://localhost:39231/api/send?token={0}", lumiaToken);
+        postRequest(uri, commandName, color);
         return true;
     }
 }
