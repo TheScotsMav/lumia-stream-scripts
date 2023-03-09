@@ -34,11 +34,11 @@ async function() {
         await setVariable({ name: "number_lines", value: 0 });
         await setVariable({ name: "last_command_time", value: timeNow });
 
-        return done();
+        return done({ shouldStop: true });
 
     } else {}
 
     await setVariable({ name: "number_lines", value: numLines });
 
-    done();
+    done({ shouldStop: true });
 }
