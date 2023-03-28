@@ -1,0 +1,2 @@
+- subtract points
+- manually add to all
