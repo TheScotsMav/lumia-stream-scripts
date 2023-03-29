@@ -3,8 +3,11 @@ async function() {
   const pointRateWhileLive = 10;
   const pointRateWhileNotLive = 0;
 
-  // Get the store, current viewers and if the stream is live
+  // Get the current viewers from the twitch_current_viewers variable
+  // Get the twitch_live variable
+  // Get the store from the viewersInfo store
   let [viewersInfo, twitchCurrentViewers, twitchLive] = await Promise.all([getStoreItem("viewersInfo"), getVariable("twitch_current_viewers"), getVariable("twitch_live")])
+  
   // Split the current viewers into an array
   const currentViewers = twitchCurrentViewers.split(", ")
 

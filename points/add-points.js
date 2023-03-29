@@ -1,7 +1,9 @@
 async function() {
   // Get the current viewers from the twitch_current_viewers variable
   // Get the message from the message variable
+  // Get the store from the viewersInfo store
   [viewersInfo, twitchCurrentViewers, message] = await Promise.all([getStoreItem("viewersInfo"), getVariable("twitch_current_viewers"), getVariable("message")]);
+
   // Split the message into parts
   const messageParts = message.split(" ");
 
